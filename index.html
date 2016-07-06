@@ -120,11 +120,16 @@
       console.log(albumid);
       var hkgcode = document.getElementById("hkgcode").value;
       console.log(hkgcode);
+      var list = {};
+      var keywords = ["qoute","img"];
+      for(var i = 0; i < len(hkgcode); i++){
+        console.log(hkgcode[i]);
+      }
 
     }
   </script>
   <form id="usrform">
-    album id: <input id="albumid" type="text" name="usrname"><input type="submit">
+    album id: <input id="albumid" type="text" name="usrname">
   </form><br>
   <textarea id="hkgcode" rows="4" cols="50" name="comment" form="usrform"></textarea>
   <button onclick="parsenpost()"> Parse and Post! </button>

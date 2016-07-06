@@ -12,7 +12,7 @@
       FB.init({
         appId      : '1827005040861675',
         xfbml      : true,
-        version    : 'v2.6'
+        version    : 'v2.5'
       });
       FB.getLoginStatus(function(response){
         if(response.status === 'connected'){
@@ -34,5 +34,11 @@
      }(document, 'script', 'facebook-jssdk'));
   </script>
   <div id="status"></div>
+  <div
+    class="fb-like"
+    data-share="true"
+    data-width="450"
+    data-show-faces="true">
+  </div>
 </body>
 </html>

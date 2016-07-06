@@ -115,7 +115,19 @@
     //      }
     //    });
     //  }
+    function parsenpost(){
+      var albumid = document.getElementById("albumid");
+      console.log(albumid);
+      var hkgcode = document.getElementById("hkgcode")
+      console.log(hkgcode);
+
+    }
   </script>
+  <form id="usrform">
+    album id: <input id="albumid" type="text" name="usrname"><input type="submit">
+  </form><br>
+  <textarea id="hkgcode" rows="4" cols="50" name="comment" form="usrform"></textarea>
+  <button onclick="parsenpost()"> Parse and Post! </button>
   <div id="status"></div>
   <fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button>
   <!-- <button onclick="login()">Login</button> -->

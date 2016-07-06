@@ -32,8 +32,20 @@
        js.src = "//connect.facebook.net/en_US/sdk.js";
        fjs.parentNode.insertBefore(js, fjs);
      }(document, 'script', 'facebook-jssdk'));
+     function login(){
+       FB.login(function(response){
+         if(response.status === 'connected'){
+           document.getElementById('status').innerHTML() = 'We are connected';
+         }else if(response.status === 'not_authorized'){
+           document.getElementById('status').innerHTML() = 'We are not logged in';
+         }else{
+           document.getElementById('status').innerHTML() = 'hell no.';
+         }
+       });
+     }
   </script>
   <div id="status"></div>
+  <button onclick="login()">Login</button>
   <div
     class="fb-like"
     data-share="true"

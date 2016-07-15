@@ -7,6 +7,15 @@
 </head>
 <body>
   <script>
+  function publishPhotoToPageAlbum(){
+    console.log("publishPhotoToPageAlbum Function");
+    // First to get
+    FB.api('/me/accounts',function(response){
+      console.log('/me/accounts');
+      console.log(response);
+      document.getElementById('status').innerHTML = 'Thanks for logging in, '+response.name;
+    });
+  }
   window.fbAsyncInit = function(){
     FB.init({
       appId: '1827005040861675',cookie: true,xfbml: true,version: 'v2.7'
@@ -25,15 +34,7 @@
       statusChangeCallback(response,publishPhotoToPageAlbum);
     })
   };
-  function publishPhotoToPageAlbum(){
-    console.log("publishPhotoToPageAlbum Function");
-    // First to get
-    FB.api('/me/accounts',function(response){
-      console.log('/me/accounts');
-      console.log(response);
-      document.getElementById('status').innerHTML = 'Thanks for logging in, '+response.name;
-    });
-  }
+
   function click(){
     FB.getLoginStatus(function(response){
       statusChangeCallback(response, publishPhotoToPageAlbum);

@@ -116,15 +116,35 @@
     //    });
     //  }
     function parsenpost(){
-      var albumid = document.getElementById("albumid").value;
-      console.log(albumid);
-      var hkgcode = document.getElementById("hkgcode").value;
-      console.log(hkgcode);
-      var list = {};
-      var keywords = ["qoute","img"];
-      for(var i = 0; i < hkgcode.length; i++){
-        console.log(hkgcode[i]);
-      }
+      // var albumid = document.getElementById("albumid").value;
+      // console.log(albumid);
+      // var hkgcode = document.getElementById("hkgcode").value;
+      // console.log(hkgcode);
+
+      var albumid = "161087720974265";
+      var url = "https://i1.i-mg.co/ilGJ3.png";
+      var message = "有時會見到佢地,得閒可捉番隻番屋企"''
+
+      /* make the API call */
+      FB.api(
+        "/"+albumid+"/photos",
+        "POST",
+        {
+            "url": url,
+            "message": message
+        },
+        function (response) {
+          console.log(albumid);
+          console.log(url);
+          console.log(message);
+          if (response && !response.error) {
+            console.log("successful");
+          }else{
+            console.log("failure");
+          }
+        }
+    );
+
 
     }
   </script>

@@ -23,6 +23,7 @@
     var payload = {};
 
     var albumid = '161087720974265';
+    var pageid = '113793925703645';
     payload.url = 'https://i1.i-mg.co/ilGJ3.png';
     payload.message = '有時會見到佢地,得閒可捉番隻番屋企';
     payload.no_story = true;
@@ -31,7 +32,12 @@
     FB.api('/me/accounts',function(response){
       console.log('/me/accounts');
       console.log(response);
-      pageInfo = response.data[1];
+      for(var i = 0; i < response.data.length; i++){
+        if(response.data[i].id === pageid){
+          pageInfo = response.data[i];
+          break;
+        }
+      }
       payload.access_token = pageInfo.access_token;
       console.log(payload);
     });

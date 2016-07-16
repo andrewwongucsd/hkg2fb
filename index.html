@@ -24,6 +24,7 @@
     var albumid = '161087720974265';
     var pageid = '113793925703645';
     var accessToken = '';
+    var url = '';
     payload.url = 'https://i1.i-mg.co/ilGJ3.png';
     payload.message = '有時會見到佢地,得閒可捉番隻番屋企';
     payload.no_story = true;
@@ -47,8 +48,10 @@
           // payload.access_token = "EAAZA9psJ2oesBAOsPqRsbUftz2ft0Wt158u2MeOZAh9TNeq1uHQgZCIuVbtMqlgU3PB8UBTP6tcd1E1KQwEXO3DzfvakzwxmlzZAVUmtifRZBxHUneeMMU7dkql0Ffso8waJY6AO4QqRZAn6xnnPMo6ke7kqye0pibZCDNZAMwUQmAZDZD";
           console.log(payload);
         });
+        url = '/'+albumid+'/photos?access_token='+accessToken;
+        console.log(url);
         FB.api(
-          '/'+albumid+'/photos?access_token='+accessToken,
+          url,
           'POST',
           payload,
           function(response){

@@ -50,15 +50,12 @@
         console.log(response);
         if(response.error){
           document.getElementById('status').innerHTML = 'fail '+payload.url;
-
         }else{
           document.getElementById('status').innerHTML = 'successful '+payload.url;
-
         }
-
       }
     );
-    deleteAllCookies();
+    // deleteAllCookies();
   }
   window.fbAsyncInit = function(){
     FB.init({

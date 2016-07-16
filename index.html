@@ -23,8 +23,8 @@
       console.log(response);
       pageInfo = response.data[1];
       payload.access_token = pageInfo.access_token;
+      console.log(payload);
     });
-    console.log(pageInfo);
     FB.api(
       '/'+albumid+'/photos',
       'POST',

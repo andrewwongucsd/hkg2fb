@@ -24,13 +24,20 @@
       pageInfo = response.data[1];
       payload.access_token = pageInfo.access_token;
     });
+    console.log(pageInfo);
     FB.api(
       '/'+albumid+'/photos',
       'POST',
       payload,
       function(response){
         console.log(response);
-        document.getElementById('status').innerHTML = 'successful '+payload.url;
+        if(response.error){
+          document.getElementById('status').innerHTML = 'fail '+payload.url;
+
+        }else{
+          document.getElementById('status').innerHTML = 'successful '+payload.url;
+
+        }
 
       }
     )

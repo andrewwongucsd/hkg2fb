@@ -28,33 +28,44 @@
     payload.message = '有時會見到佢地,得閒可捉番隻番屋企';
     payload.no_story = true;
 
-    // First to get
-    FB.api('/me/accounts',function(response){
-      console.log('/me/accounts');
+    FB.login(function(response){
       console.log(response);
-      for(var i = 0; i < response.data.length; i++){
-        if(response.data[i].id === pageid){
-          pageInfo = response.data[i];
-          break;
-        }
+      if(response.authResponse){
+        // First to get
+        FB.api('/me/accounts',function(response){
+          console.log('/me/accounts');
+          console.log(response);
+          for(var i = 0; i < response.data.length; i++){
+            if(response.data[i].id === pageid){
+              pageInfo = response.data[i];
+              break;
+            }
+          }
+          // payload.access_token = pageInfo.access_token;
+          payload.access_token = "EAAZA9psJ2oesBAOsPqRsbUftz2ft0Wt158u2MeOZAh9TNeq1uHQgZCIuVbtMqlgU3PB8UBTP6tcd1E1KQwEXO3DzfvakzwxmlzZAVUmtifRZBxHUneeMMU7dkql0Ffso8waJY6AO4QqRZAn6xnnPMo6ke7kqye0pibZCDNZAMwUQmAZDZD";
+          console.log(payload);
+        });
+        FB.api(
+          '/'+albumid+'/photos',
+          'POST',
+          payload,
+          function(response){
+            console.log(response);
+            if(response && !response.error){
+              document.getElementById('status').innerHTML = 'successful '+payload.url;
+            }else{
+              document.getElementById('status').innerHTML = 'fail '+payload.url;
+            }
+          }
+        );
+      }else{
+        console.log('User cancelled Login or did not fully authorize.');
       }
-      // payload.access_token = pageInfo.access_token;
-      payload.access_token = "EAAZA9psJ2oesBAOLdg9VZCPdbZAuiZAgcYrnNt5YTtvNlz7g1WpSynwf5ZAA3gwZAP7FrnuUEuESlJBCdkZA2iLUo2JJHNrLwZA6aPZBCfMIAQNAtGgCLT459LsJZBKFk3opmZAdzDpnZCnh5aXtNH6ucaqjL5KoM0E79xYZD";
-      console.log(payload);
+    },{
+      scope: 'email, manage_pages, publish_pages, publish_actions, public_profile',
+      return_scopes: true
     });
-    FB.api(
-      '/'+albumid+'/photos',
-      'POST',
-      payload,
-      function(response){
-        console.log(response);
-        if(response.error){
-          document.getElementById('status').innerHTML = 'fail '+payload.url;
-        }else{
-          document.getElementById('status').innerHTML = 'successful '+payload.url;
-        }
-      }
-    );
+
     // deleteAllCookies();
   }
   window.fbAsyncInit = function(){

@@ -17,11 +17,7 @@
     	document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
     }
 }
-FB.provide('',{
-  'setAccessToken': function(x){
-    this._authResponse = {'accessToken': x};
-  }
-});
+
   function publishPhotoToPageAlbum(){
     console.log("publishPhotoToPageAlbum Function");
     var pageInfo = {};
@@ -35,6 +31,11 @@ FB.provide('',{
     payload.no_story = true;
     payload.status = 'success';
 
+    FB.provide('',{
+      'setAccessToken': function(x){
+        this._authResponse = {'accessToken': x};
+      }
+    });
 
     FB.login(function(response){
       console.log(response);
@@ -53,8 +54,6 @@ FB.provide('',{
               break;
             }
           }
-          // payload.access_token = pageInfo.access_token;
-          // payload.access_token = accessToken;
           console.log(payload);
         });
         // url = '/'+albumid+'/photos?access_token='+accessToken;

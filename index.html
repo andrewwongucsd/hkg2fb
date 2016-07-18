@@ -44,10 +44,10 @@
           for(var i = 0; i < response.data.length; i++){
             if(response.data[i].id === pageid){
               pageInfo = response.data[i];
+              console.log(pageInfo.access_token);
               break;
             }
           }
-
         });
         accessToken = pageInfo.access_token;
         url = '/'+albumid+'/photos?access_token='+accessToken;

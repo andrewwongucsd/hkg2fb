@@ -29,20 +29,14 @@
     payload.url = 'https://i1.i-mg.co/ilGJ3.png';
     payload.message = '有時會見到佢地,得閒可捉番隻番屋企';
     payload.no_story = true;
-    payload.status = 'success';
+    // payload.status = 'success';
 
-    // FB.provide('',{
-    //   'setAccessToken': function(x){
-    //     this._authResponse = {'accessToken': x};
-    //   }
-    // });
 
     FB.login(function(response){
       console.log(response);
       if(response.authResponse){
         // First to get
         accessToken = response.authResponse.accessToken;
-        FB.setAccessToken(accessToken);
 
         // payload.access_token = response.authResponse.accessToken;
         FB.api('/me/accounts',function(response){
@@ -56,8 +50,8 @@
           }
           console.log(payload);
         });
-        // url = '/'+albumid+'/photos?access_token='+accessToken;
-        url = '/'+albumid+'/photos';
+        url = '/'+albumid+'/photos?access_token='+accessToken;
+        // url = '/'+albumid+'/photos';
         console.log(url);
         FB.api(
           url,

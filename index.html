@@ -50,8 +50,6 @@
           accessToken = pageInfo.access_token;
 
           url = '/'+albumid+'/photos?access_token='+accessToken;
-          console.log(url);
-          console.log(payload);
         });
         // url = '/'+albumid+'/photos';
         setTimeout(FB.api(
@@ -60,6 +58,8 @@
           payload,
           function(response){
             console.log(response);
+            console.log(root+url);
+            console.log(payload)
             if(response && !response.error){
               document.getElementById('status').innerHTML = 'successful '+payload.url;
             }else{

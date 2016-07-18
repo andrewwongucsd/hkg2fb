@@ -48,7 +48,7 @@
             }
           }
           console.log(payload);
-          accessToken = pageInfo.access_token;
+          accessToken = pageInfo.access_token.trim();
         });
         url = '/'+albumid+'/photos?access_token='+accessToken;
         // url = '/'+albumid+'/photos';

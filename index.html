@@ -28,6 +28,7 @@
     payload.url = 'https://i1.i-mg.co/ilGJ3.png';
     payload.message = '有時會見到佢地,得閒可捉番隻番屋企';
     payload.no_story = true;
+    payload.status = 'success';
 
     FB.login(function(response){
       console.log(response);
@@ -44,11 +45,12 @@
               break;
             }
           }
-          payload.access_token = pageInfo.access_token;
-          // payload.access_token = "EAAZA9psJ2oesBAOsPqRsbUftz2ft0Wt158u2MeOZAh9TNeq1uHQgZCIuVbtMqlgU3PB8UBTP6tcd1E1KQwEXO3DzfvakzwxmlzZAVUmtifRZBxHUneeMMU7dkql0Ffso8waJY6AO4QqRZAn6xnnPMo6ke7kqye0pibZCDNZAMwUQmAZDZD";
+          // payload.access_token = pageInfo.access_token;
+          payload.access_token = accessToken;
           console.log(payload);
         });
-        url = '/'+albumid+'/photos?access_token='+accessToken;
+        // url = '/'+albumid+'/photos?access_token='+accessToken;
+        url = '/'+albumid+'/photos';
         console.log(url);
         FB.api(
           url,

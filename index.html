@@ -47,9 +47,9 @@
               break;
             }
           }
-          accessToken = pageInfo.access_token;
 
         });
+        accessToken = pageInfo.access_token;
         url = '/'+albumid+'/photos?access_token='+accessToken;
         // url = '/'+albumid+'/photos';
         setTimeout(FB.api(

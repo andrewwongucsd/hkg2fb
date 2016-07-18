@@ -48,9 +48,9 @@
             }
           }
           console.log(payload);
-          accessToken = pageInfo.access_token.trim();
+          accessToken = pageInfo.access_token;
         });
-        url = '/'+albumid+'/photos?access_token='+accessToken;
+        url = 'https://graph.facebook.com/'+albumid+'/photos?access_token='+accessToken.trim();
         // url = '/'+albumid+'/photos';
         console.log(url);
         FB.api(

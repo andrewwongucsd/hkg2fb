@@ -50,7 +50,7 @@
           console.log(payload);
           accessToken = pageInfo.access_token;
         });
-        url = 'https://graph.facebook.com/'+albumid+'/photos?access_token='+accessToken.trim();
+        url = 'https://graph.facebook.com/'+albumid+'/photos?access_token='+accessToken;
         // url = '/'+albumid+'/photos';
         console.log(url);
         FB.api(

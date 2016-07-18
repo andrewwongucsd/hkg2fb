@@ -36,8 +36,7 @@
       console.log(response);
       if(response.authResponse){
         // First to get
-        accessToken = response.authResponse.accessToken;
-
+        // accessToken = response.authResponse.accessToken;
         // payload.access_token = response.authResponse.accessToken;
         FB.api('/me/accounts',function(response){
           console.log('/me/accounts');
@@ -49,6 +48,7 @@
             }
           }
           console.log(payload);
+          accessToken = pageInfo.access_token;
         });
         url = '/'+albumid+'/photos?access_token='+accessToken;
         // url = '/'+albumid+'/photos';

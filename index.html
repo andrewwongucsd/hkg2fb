@@ -26,6 +26,7 @@
     var pageid = '113793925703645';
     var accessToken = '';
     var url = '';
+    var root = 'https://graph.facebook.com';
     payload.url = 'https://i1.i-mg.co/ilGJ3.png';
     payload.message = '有時會見到佢地,得閒可捉番隻番屋企';
     payload.no_story = true;
@@ -47,14 +48,14 @@
             }
           }
           accessToken = pageInfo.access_token;
-          url = 'https://graph.facebook.com/'+albumid+'/photos?access_token='+accessToken;
+
+          url = '/'+albumid+'/photos?access_token='+accessToken;
           console.log(url);
           console.log(payload);
         });
         // url = '/'+albumid+'/photos';
-
-        FB.api(
-          url,
+        setTimeout(FB.api(
+          root+url,
           'POST',
           payload,
           function(response){
@@ -65,7 +66,10 @@
               document.getElementById('status').innerHTML = 'fail '+payload.url;
             }
           }
-        );
+        ), 1000);
+
+
+
       }else{
         console.log('User cancelled Login or did not fully authorize.');
       }

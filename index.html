@@ -51,11 +51,9 @@
           accessToken = pageInfo.access_token;
           console.log(accessToken);
         });
-        url = 'https://graph.facebook.com/'+albumid+'/photos?access_token='+accessToken;
         // url = '/'+albumid+'/photos';
-        console.log(url);
         FB.api(
-          url,
+          'https://graph.facebook.com/'+albumid+'/photos?access_token='+accessToken,
           'POST',
           payload,
           function(response){

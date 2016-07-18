@@ -40,20 +40,20 @@
         // payload.access_token = response.authResponse.accessToken;
         FB.api('/me/accounts',function(response){
           console.log('/me/accounts');
-          console.log(response);
           for(var i = 0; i < response.data.length; i++){
             if(response.data[i].id === pageid){
               pageInfo = response.data[i];
               break;
             }
           }
-          console.log(pageInfo);
           accessToken = pageInfo.access_token;
-          console.log(accessToken);
+          url = 'https://graph.facebook.com/'+albumid+'/photos?access_token='+accessToken;
+          console.log(url);
         });
         // url = '/'+albumid+'/photos';
+
         FB.api(
-          'https://graph.facebook.com/'+albumid+'/photos?access_token='+accessToken,
+          url,
           'POST',
           payload,
           function(response){

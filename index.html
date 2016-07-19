@@ -117,17 +117,20 @@
   function getPageAccessToken(){
     console.log("getPageAccessToken Function");
     var pageid = document.getElementById('pageid');
+    if(pageid.trim() === ''){
+      alert("Page id cannot be emptied");
+    }
     var accessToken = '';
 
     FB.login(function(response){
       if(response.authResponse){
         FB.api('/me/accounts',function(response){
-          console.log('/me/accounts');
+          console.log(response);
           for(var i = 0; i < response.data.length; i++){
             if(response.data[i].id === pageid){
               accessToken = response.data[i];
-              console.log(accessToken);
-              document.getElementById('tokenid') = accessToken;
+              alert(accessToken);
+              document.getElementById('tokenid').value = accessToken;
               break;
             }
           }
@@ -152,7 +155,7 @@
     access token: <input id="tokenid" type="text" name="tokenid">
     <button onclick="tokenRetriever()"> Get Page Token to publish </button>
     <br>
-  <textarea id="hkgcode" rows="4" cols="50" name="comment" form="usrform"></textarea>
+  <textarea id="hkgcode" rows="4" cols="50" name="comment"></textarea>
   <button onclick="parsenpost()"> Parse and Post! </button>
   <div id="status"></div>
   <fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button>

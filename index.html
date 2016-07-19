@@ -7,54 +7,35 @@
 </head>
 <body>
   <script>
-  function deleteAllCookies() {
-    var cookies = document.cookie.split(";");
-
-    for (var i = 0; i < cookies.length; i++) {
-    	var cookie = cookies[i];
-    	var eqPos = cookie.indexOf("=");
-    	var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
-    	document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
-    }
-}
-
-
+  function autofill(){
+    document.getElementById('albumid').value = '161087720974265';
+    document.getElementById('pageid').value = '113793925703645';
+  }
   function publishPhotoToPageAlbum(){
     console.log("publishPhotoToPageAlbum Function");
     var pageInfo = {};
     var payload = {};
-    var albumid = '161087720974265';
-    var pageid = '113793925703645';
-    var accessToken = '';
+    // var albumid = '161087720974265';
+    // var pageid = '113793925703645';
+    var albumid = document.getElementById('albumid').value.trim();
+    var pageid = document.getElementById('pageid').value.trim();
+    var accessToken = document.getElementById('tokenid').value.trim();
+    if(albumid.length === '' || pageid.length === '' || accessToken.length === ''){
+      alert("Album Id, Page Id, Access Token Missing.");
+    }
     var url = '';
     var root = 'https://graph.facebook.com';
     payload.url = 'https://i1.i-mg.co/ilGJ3.png';
     payload.message = '有時會見到佢地,得閒可捉番隻番屋企';
     payload.no_story = true;
-    // payload.status = 'success';
-
 
     FB.login(function(response){
       console.log(response);
       if(response.authResponse){
-        // First to get
-        // accessToken = response.authResponse.accessToken;
-        // payload.access_token = response.authResponse.accessToken;
-        FB.api('/me/accounts',function(response){
-          console.log('/me/accounts');
-          for(var i = 0; i < response.data.length; i++){
-            if(response.data[i].id === pageid){
-              pageInfo = response.data[i];
-              console.log(pageInfo.access_token);
-              break;
-            }
-          }
-        });
-        accessToken = 'EAAZA9psJ2oesBALhZB5twLnCmGKF3F8bhEtNTcxN1SIJKpSKvholPnBIAmZBhsVwROD6KKdJf32Pb2UojZCLbexZCMdiLBCjqEdaXKgD0qq9m7H4Y9ZCZA73AcvKMzoyimLVrqjp9LtZCLGzOZCUDflamWwfSbUiUYwsUuEzjvZBZC7qVmDguTZAkhow';
         url = '/'+albumid+'/photos?access_token='+accessToken;
         // url = '/'+albumid+'/photos';
         setTimeout(FB.api(
-          root+url,
+          url,
           'POST',
           payload,
           function(response){
@@ -82,10 +63,10 @@
     FB.init({
       appId: '1827005040861675',cookie: true, xfbml: true,version: 'v2.7'
     });
-
-    FB.getLoginStatus(function(response){
-      statusChangeCallback(response, publishPhotoToPageAlbum);
-    })
+    autofill();
+    // FB.getLoginStatus(function(response){
+    //   statusChangeCallback(response, publishPhotoToPageAlbum);
+    // })
   };
 
   (function(d, s, id) {
@@ -96,7 +77,7 @@
     fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'facebook-jssdk'));
 
-  function click(){
+  function publish(){
     FB.getLoginStatus(function(response){
       statusChangeCallback(response, publishPhotoToPageAlbum);
     })
@@ -117,24 +98,21 @@
   function getPageAccessToken(){
     console.log("getPageAccessToken Function");
     var pageid = document.getElementById('pageid').value;
-    console.log(typeof(pageid));
     if(pageid.trim() === ''){
       alert("Page id cannot be emptied");
+      return;
     }
     var accessToken = '';
 
     FB.login(function(response){
       if(response.authResponse){
         FB.api('/me/accounts',function(response){
-          console.log(response);
           for(var i = 0; i < response.data.length; i++){
             if(response.data[i].id === pageid){
               accessToken = response.data[i].access_token;
-              alert(accessToken);
               document.getElementById('tokenid').value = accessToken;
               break;
             }else{
-              console.log(pageid+" vs "+response.data[i].id);
             }
           }
         })
@@ -153,13 +131,14 @@
   }
 
   </script>
+    <button onclick="autofill()"> Autofill </button><br>
     album id: <input id="albumid" type="text" name="albumid"><br>
     page id: <input id="pageid" type="text" name="pageid"><br>
     access token: <input id="tokenid" type="text" name="tokenid">
     <button onclick="tokenRetriever()"> Get Page Token to publish </button>
     <br>
   <textarea id="hkgcode" rows="4" cols="50" name="comment"></textarea>
-  <button onclick="parsenpost()"> Parse and Post! </button>
+  <button onclick="publish()"> Parse and Publish! </button>
   <div id="status"></div>
   <fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button>
   <!-- <button onclick="login()">Login</button> -->

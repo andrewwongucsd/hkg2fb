@@ -116,8 +116,8 @@
 
   function getPageAccessToken(){
     console.log("getPageAccessToken Function");
-    var pageid = document.getElementById('pageid');
-    if(pageid === ''){
+    var pageid = document.getElementById('pageid').value;
+    if(pageid.trim() === ''){
       alert("Page id cannot be emptied");
     }
     var accessToken = '';

@@ -141,7 +141,7 @@
     },{
       scope: 'email, manage_pages, publish_pages, publish_actions, public_profile',
       return_scopes: true
-    });
+    })
   }
   function tokenRetriever(){
     FB.getLoginStatus(function(response){
@@ -150,13 +150,11 @@
   }
 
   </script>
-  <form id="usrform">
     album id: <input id="albumid" type="text" name="albumid"><br>
     page id: <input id="pageid" type="text" name="pageid"><br>
     access token: <input id="tokenid" type="text" name="tokenid">
     <button onclick="tokenRetriever()"> Get Page Token to publish </button>
-
-  </form><br>
+    <br>
   <textarea id="hkgcode" rows="4" cols="50" name="comment" form="usrform"></textarea>
   <button onclick="parsenpost()"> Parse and Post! </button>
   <div id="status"></div>

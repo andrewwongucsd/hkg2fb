@@ -129,7 +129,7 @@
           console.log(response);
           for(var i = 0; i < response.data.length; i++){
             if(response.data[i].id === pageid){
-              accessToken = response.data[i];
+              accessToken = response.data[i].access_token;
               alert(accessToken);
               document.getElementById('tokenid').value = accessToken;
               break;

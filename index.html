@@ -132,6 +132,8 @@
               alert(accessToken);
               document.getElementById('tokenid').value = accessToken;
               break;
+            }else{
+              console.log(pageid+" vs "+response.data[i].id);
             }
           }
         })

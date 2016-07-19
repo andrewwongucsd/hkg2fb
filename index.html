@@ -18,6 +18,7 @@
     }
 }
 
+
   function publishPhotoToPageAlbum(){
     console.log("publishPhotoToPageAlbum Function");
     var pageInfo = {};
@@ -67,9 +68,6 @@
             }
           }
         ), 1000);
-
-
-
       }else{
         console.log('User cancelled Login or did not fully authorize.');
       }
@@ -82,11 +80,11 @@
   }
   window.fbAsyncInit = function(){
     FB.init({
-      appId: '1827005040861675',cookie: true,xfbml: true,version: 'v2.7'
+      appId: '1827005040861675',cookie: true, xfbml: true,version: 'v2.7'
     });
 
     FB.getLoginStatus(function(response){
-      statusChangeCallback(response,publishPhotoToPageAlbum);
+      statusChangeCallback(response, publishPhotoToPageAlbum);
     })
   };
 
@@ -119,9 +117,45 @@
     }
   };
 
+  function getPageAccessToken(){
+    console.log("getPageAccessToken Function");
+    var pageid = document.getElementById('pageid').trim();
+    var accessToken = '';
+
+    FB.login(function(response){
+      if(response.authResponse){
+        FB.api('/me/accounts',function(response){
+          console.log('/me/accounts');
+          for(var i = 0; i < response.data.length; i++){
+            if(response.data[i].id === pageid){
+              accessToken = response.data[i];
+              console.log(accessToken);
+              document.getElementById('tokenid') = accessToken;
+              break;
+            }
+          }
+        })
+      }else{
+        console.log('User cancelled Login or did not fully authorize.');
+      }
+    },{
+      scope: 'email, manage_pages, publish_pages, publish_actions, public_profile',
+      return_scopes: true
+    });
+  }
+  function tokenRetriever(){
+    FB.getLoginStatus(function(response){
+      statusChangeCallback(response, getPageAccessToken());
+    })
+  }
+
   </script>
   <form id="usrform">
-    album id: <input id="albumid" type="text" name="usrname">
+    album id: <input id="albumid" type="text" name="albumid"><br>
+    page id: <input id="pageid" type="text" name="pageid"><br>
+    access token: <input id="tokenid" type="text" name="tokenid">
+    <button onclick="tokenRetriever()"> Get Page Token to publish </button>
+
   </form><br>
   <textarea id="hkgcode" rows="4" cols="50" name="comment" form="usrform"></textarea>
   <button onclick="parsenpost()"> Parse and Post! </button>

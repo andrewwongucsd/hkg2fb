@@ -193,6 +193,7 @@
             filter.size = {next_state: 5, append: false};
             filter.flowerface = {next_state: 5, append: true};
             filter.bomb = {next_state: 5, append:true};
+            filter.photo = {next_state: 5, append: true};
 
             if(input[i] == ']'){
               if(parseInt(code.slice(-1), 10) >= 0){
@@ -324,6 +325,9 @@
         console.log("State 5: Exception Handling.");
           while(i < input.length){
             console.log(i+" - "+input[i]+" - "+typeof(input[i]));
+            if(!("message" in data[data.length - 1])){
+              data[data.length - 1].message = "";
+            }
             var message = data[data.length - 1].message;
             if(input[i] == '['){
               console.log(message.slice(message.length-2, message.length));

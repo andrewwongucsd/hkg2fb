@@ -194,9 +194,9 @@
             }
             i++;
           }
-        }else if(input[i] == '[' || input[i] == ' ' || input[i] == '\n'){
+        }else if(input[i] == ' ' || input[i] == '\n'){
 
-        }else if(input[i] == '/'){
+        }else if(input[i] == '/' || input[i] == '['){
           while(i < input.length){
             console.log("inside / "+input[i]+" - "+i);
             var code = '';

@@ -60,7 +60,11 @@
             FB.api(
             url,
             'POST',
-            compiled[index],
+            {
+              "url": compiled[index].url,
+              "no_story": compiled[index].no_story,
+              "message": compiled[index].message
+            },
             function(response){
               console.log(response);
               if(response && !response.error){

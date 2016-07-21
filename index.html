@@ -283,9 +283,10 @@
         console.log("State 5: Exception Handling.");
           while(i < input.length){
             console.log(i+" - "+input[i]+" - "+typeof(input[i]));
+            var message = data[data.length - 1].message;
             if(input[i] == '['){
-              console.log(img_text.slice(img_text.length-2, img_text.length));
-              if(img_text.slice(img_text.length-2, img_text.length) == ':-'){
+              console.log(message.slice(message.length-2, message.length));
+              if(message.slice(message.length-2, message.length) == ':-'){
                 data[data.length - 1].message += input[i];
                 continue;
               }else{

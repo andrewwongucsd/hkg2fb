@@ -192,7 +192,7 @@
 
             if(input[i] == ']'){
               if(parseInt(code.slice(-1), 10) >= 0){
-                code = code.substring(0, code.length - 1);
+                code = code.substring(0, code.length - 2);
               }
               if(code in filter){
                 console.log(filter[code]);
@@ -229,7 +229,7 @@
             if(input[i] == ']'){
               console.log(code);
               if(parseInt(code.slice(-1), 10) >= 0){
-                code = code.substring(0, code.length - 1);
+                code = code.substring(0, code.length - 2);
               }
               console.log(code);
               filter.url = {next_state: 5};

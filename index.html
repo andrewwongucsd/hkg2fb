@@ -186,6 +186,9 @@
               }else if(code == 'url'){
                 state = 5;
                 break;
+              }else if(data.length == 0){
+                state = 0;
+                break;
               }else{
                 state = 1;
                 break;

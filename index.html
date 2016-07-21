@@ -228,8 +228,15 @@
             }
             if(input[i] == ']'){
               console.log(code);
+              if(parseInt(code.slice(-1), 10) >= 0){
+                code = code.substring(0, code.length - 1);
+              }
               filter.url = {next_state: 5};
               filter.img = {next_state: 3};
+              filter.size = {next_state: 5};
+              filter.blue = {next_state: 5};
+              filter.b = {next_state: 5};
+              filter.red = {next_state: 5};
               if(code in filter){
                 state = filter[code].next_state;
               }

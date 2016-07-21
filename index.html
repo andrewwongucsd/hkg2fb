@@ -174,6 +174,8 @@
         if(input[i].match(letters)){
           var code = '';
           while(i < input.length){
+            console.log(i+" - "+input[i]+" - "+typeof(input[i]));
+
             if(input[i] == ']'){
               if(code == 'img'){
                 state = 3; // img_url read.
@@ -198,6 +200,8 @@
       }else if(state == 2){ // album description
         var album_description = '';
         while(i < input.length){
+          console.log(i+" - "+input[i]+" - "+typeof(input[i]));
+
           if(input[i] == '['){
             data.push({
               message: album_description,
@@ -213,11 +217,15 @@
       }else if(state == 3){ // img_url read.
         var img_url = ''
         while(i < input.length){
+          console.log(i+" - "+input[i]+" - "+typeof(input[i]));
+
           if(input[i] == '['){
             data.push({
               img_url: img_url
             });
             while(i < input.length && input[i] == ']'){
+              console.log(i+" - "+input[i]+" - "+typeof(input[i]));
+
               i++;
             }
             state = 4;
@@ -230,6 +238,8 @@
       }else if(state == 4){ //img_text read.
         var img_text = '';
         while(i < input.length){
+          console.log(i+" - "+input[i]+" - "+typeof(input[i]));
+
           if(input[i] == '[' || i == input.length - 1){
             if(img_text.length == 0){
               // doing nothing.

@@ -164,6 +164,7 @@
           state = 2; // concat album_description
         }
       }else if(state == 1){ // [] content read.
+        console.log("State 1: [] content read.");
         if(input[i].match(letters)){
           var code = '';
           while(i < input.length){
@@ -261,6 +262,7 @@
             console.log(i+" - "+input[i]+" - "+typeof(input[i]));
             if(input[i] == '['){
               state = 1;
+              i++;
               break;
             }
             data[data.length - 1].img_text += input[i];

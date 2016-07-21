@@ -206,6 +206,7 @@
 
         }
       }else if(state == 2){ // album description
+        console.log("State 2: Album Description.");
         var album_description = '';
         while(i < input.length){
           console.log(i+" - "+input[i]+" - "+typeof(input[i]));
@@ -223,6 +224,7 @@
           i++;
         }
       }else if(state == 3){ // img_url read.
+        console.log("State 3: img_url read.");
         var img_url = ''
         while(i < input.length){
           console.log(i+" - "+input[i]+" - "+typeof(input[i]));
@@ -243,6 +245,7 @@
           i++;
         }
       }else if(state == 4){ //img_text read.
+        console.log("State 4: img_text read.");
         var img_text = '';
         while(i < input.length){
           console.log(i+" - "+input[i]+" - "+typeof(input[i]));
@@ -261,6 +264,7 @@
           i++;
         }
       }else if(state == 5){
+        console.log("State 5: Exception Handling.");
           while(i < input.length){
             console.log(i+" - "+input[i]+" - "+typeof(input[i]));
             if(input[i] == '['){

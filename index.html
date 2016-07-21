@@ -183,13 +183,13 @@
             }else if(input[i].match(letters)){
               code += input[i];
             }else{
-              alert("Exception Error in state 1A."+input[i]+" typeof "+typeof(input[i]));
+              alert("Exception Error in state 1A. "+i+" - "+input[i]+" - typeof "+typeof(input[i]));
               return;
             }
             i++;
           }
         }else{
-          alert("Exception occurs in state 1B."+input[i]+" typeof "+typeof(input[i]));
+          alert("Exception occurs in state 1B."+i+" - "+input[i]+" - typeof "+typeof(input[i]));
           return;
         }
       }else if(state == 2){ // album description

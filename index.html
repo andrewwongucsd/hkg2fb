@@ -187,7 +187,7 @@
                 break;
               }else if(code in filter){
                 state = filter[code].next_state;
-                if(append){
+                if(filter[code].append){
                   data[data.length - 1].message += "["+code+"]";
                 }
                 break;

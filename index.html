@@ -196,7 +196,7 @@
                 break;
               }
 
-            }else if(input[i].match(letters)){
+            }else if(input[i].match(letters) || parseInt(input[i], 10) >=0 ){
               code += input[i];
             }else{
               alert("Exception Error in state 1A. "+i+" - "+input[i]+" - typeof "+typeof(input[i]));

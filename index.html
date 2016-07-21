@@ -234,9 +234,8 @@
             data.push({
               img_url: img_url
             });
-            while(i < input.length && input[i] == ']'){
+            while(i < input.length && input[i] != ']'){
               console.log(i+" - "+input[i]+" - "+typeof(input[i]));
-
               i++;
             }
             state = 4;

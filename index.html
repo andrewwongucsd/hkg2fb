@@ -297,7 +297,7 @@
         var albumid = '';
         console.log(url.slice(i, i+'album_id='.length));
         if(url.slice(i,i+'album_id='.length) == 'album_id='){
-          i = i+('album_id='.length)-1;
+          i = i+('album_id='.length);
           while(i < url.length){
             console.log(i+" - "+url[i]);
             if(parseInt(url[i],10)){

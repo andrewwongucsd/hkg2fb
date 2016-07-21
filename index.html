@@ -187,6 +187,7 @@
                 state = 0;
                 break;
               }else if(code in filter){
+                console.log(filter[code]);
                 state = filter[code].next_state;
                 if(filter[code].append){
                   data[data.length - 1].message += "["+code+"]";

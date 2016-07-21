@@ -228,7 +228,11 @@
         var img_text = '';
         while(i < input.length){
           if(input[i] == '[' || i == input.length - 1){
-            data[data.length - 1].img_text = img_text;
+            if(img_text.length == 0){
+              // doing nothing.
+            }else{
+              data[data.length - 1].img_text = img_text;
+            }
             state = 1;
             break;
           }else{

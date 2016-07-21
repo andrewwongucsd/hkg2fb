@@ -264,6 +264,7 @@
           console.log(i+" - "+input[i]+" - "+typeof(input[i]));
 
           if(input[i] == '[' || i == input.length - 1){
+            console.log(img_text.slice(img_text.length-2, img_text.length));
             if(img_text.slice(img_text.length-2, img_text.length) == ':-'){
               img_text += input[i];
               continue;

@@ -260,6 +260,7 @@
         }
       }else if(state == 5){
           while(i < input.length){
+            console.log(i+" - "+input[i]+" - "+typeof(input[i]));
             if(input[i] == '['){
               state = 1;
               break;

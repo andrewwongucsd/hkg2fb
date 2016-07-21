@@ -183,6 +183,10 @@
                 state = 5; // exception handling.
                 data[data.length - 1].message += '[sosad]';
                 break;
+              }else if(code == 'photo'){
+                state = 5;
+                data[data.length - 1].message += '[photo]';
+                break;
               }else if(code == 'url'){
                 state = 5;
                 break;

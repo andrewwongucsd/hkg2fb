@@ -279,8 +279,8 @@
       console.log(i+" - "+url[i]);
       if(url[i] == 'p'){
         var pos = i;
-        console.log(url.slice(i,'photos'.length));
-        if(url.slice(i,'photos'.length) == 'photos'){
+        console.log(url.slice(i,i+'photos'.length));
+        if(url.slice(i,i+'photos'.length) == 'photos'){
           i--;
           var pageid = '';
           while(i > 0 && url[i] != '-'){
@@ -295,8 +295,8 @@
       }else if(url[i] == 'a'){
         var pos = i;
         var albumid = '';
-        console.log(url.slice(i, 'album_id='.length));
-        if(url.slice(i,'album_id='.length) == 'album_id='){
+        console.log(url.slice(i, i+'album_id='.length));
+        if(url.slice(i,i+'album_id='.length) == 'album_id='){
           while(i < url.length){
             console.log(i+" - "+url[i]);
             if(url[i]>= '0' && url[i]<= '9'){

@@ -198,13 +198,19 @@
         }else if(input[i] == '/'){
           while(i < input.length){
             console.log("inside / "+input[i]+" - "+i);
-            if(input[i++] == ']'){
-              break;
+            var code = '';
+            while(input[i] != ']'){
+              code += input[i];
+              i++;
+            }
+            if(input[i] == ']'){
+              if(code == 'url'){
+                state = 5;
+              }
             }
           }
         }else{
           alert("Exception occurs in state 1B."+i+" - "+input[i]+" - typeof "+typeof(input[i]));
-
         }
       }else if(state == 2){ // album description
         console.log("State 2: Album Description.");

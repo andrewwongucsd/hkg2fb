@@ -32,7 +32,7 @@
         var no_album_id = false;
         if(albumid == ''){
           no_album_id = true;
-          url = '/'+pageid+'/albums?access_token='+accessToken;
+          url = root+'/'+pageid+'/albums?access_token='+accessToken;
           FB.api(
             url,
             'POST',
@@ -40,6 +40,7 @@
             function(response){
               if(response && !response.error){
                 albumid = response.id;
+                document.getElementById('albumid').value = albumid;
                 console.log(response);
               }else{
                 console.log('failed to create photo album');
@@ -52,7 +53,8 @@
         if(no_album_id){
           compiled[1].message = compiled[0].message + '\n'+compiled[1].message;
         }
-        url = '/'+albumid+'/photos?access_token='+accessToken;
+        albumid = document.getElementById('albumid').value;
+        url = root+'/'+albumid+'/photos?access_token='+accessToken;
         for(var index = 1; index < compiled.length; index++){
           setTimeout(function(){
             FB.api(

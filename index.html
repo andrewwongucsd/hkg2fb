@@ -183,15 +183,15 @@
             filter["369"] = {title: "369", next_state: 5, append: true};
             filter.banghead = {title: "banghead", next_state: 5, append: true};
             if(input[i] == ']'){
-              if(data.length == 0){
-                state = 0;
-                break;
-              }else if(filter.hasOwnProperty(code)){
+              if(code in filter){
                 console.log(filter[code]);
                 state = filter[code].next_state;
                 if(filter[code].append){
                   data[data.length - 1].message += "["+code+"]";
                 }
+                break;
+              }else if(data.length == 0){
+                state = 0;
                 break;
               }else{
                 state = 1;

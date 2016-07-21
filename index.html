@@ -287,8 +287,7 @@
             if(input[i] == '['){
               console.log(message.slice(message.length-2, message.length));
               if(message.slice(message.length-2, message.length) == ':-'){
-                data[data.length - 1].message += input[i];
-                continue;
+
               }else{
                 state = 1;
                 break;

@@ -281,7 +281,7 @@
         var pos = i;
         console.log(url.slice(i,i+'photos'.length));
         if(url.slice(i,i+'photos'.length) == 'photos'){
-          i--;
+          i = i - 2;
           var pageid = '';
           while(i > 0 && url[i] != '-'){
             console.log(i+" - "+url[i]);
@@ -297,6 +297,7 @@
         var albumid = '';
         console.log(url.slice(i, i+'album_id='.length));
         if(url.slice(i,i+'album_id='.length) == 'album_id='){
+          i = i+('album_id='.length)-1;
           while(i < url.length){
             console.log(i+" - "+url[i]);
             if(url[i]>= '0' && url[i]<= '9'){

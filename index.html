@@ -51,12 +51,12 @@
         if(no_album_id){
           compiled[1].message = compiled[0].message + '\n'+compiled[1].message;
         }
-        albumid = document.getElementById('albumid').value;
-        url = root+'/'+albumid+'/photos?access_token='+accessToken;
         for(var index = 1; index < compiled.length; index++){
           setTimeout(function(){
             console.log(url);
             console.log(compiled[index]);
+            albumid = document.getElementById('albumid').value;
+            url = root+'/'+albumid+'/photos?access_token='+accessToken;
             FB.api(
             url,
             'POST',

@@ -29,7 +29,9 @@
     FB.login(function(response){
       console.log(response);
       if(response.authResponse){
+        var no_album_id = false;
         if(albumid == ''){
+          no_album_id = true;
           url = '/'+pageid+'/albums?access_token='+accessToken;
           FB.api(
             url,
@@ -46,7 +48,9 @@
           )
         }
         url = '/'+albumid+'/photos?access_token='+accessToken;
-        // url = '/'+albumid+'/photos';
+        if(no_album_id){
+          compiled[1].message = compiled[0].message + '\n'+compiled[1].message;
+        }
         for(var index = 1; index < compiled.length; index++){
           setTimeout(FB.api(
             url,
@@ -54,14 +58,14 @@
             compiled[index],
             function(response){
               console.log(response);
-              console.log(payload)
+              console.log(compiled[index]);
               if(response && !response.error){
-                document.getElementById('status').innerHTML = 'successful '+payload.url;
+                document.getElementById('status').innerHTML = 'successful ';
               }else{
-                document.getElementById('status').innerHTML = 'fail '+payload.url;
+                document.getElementById('status').innerHTML = 'failed';
               }
             }
-          ), 1);
+          ), 5000);
         }
       }else{
         console.log('User cancelled Login or did not fully authorize.');
@@ -242,6 +246,9 @@
           console.log(i+" - "+input[i]+" - "+typeof(input[i]));
 
           if(input[i] == '['){
+            if(data.length == 0){
+              data.push({message:'', name:''});
+            }
             data.push({
               url: img_url,
               no_story: true

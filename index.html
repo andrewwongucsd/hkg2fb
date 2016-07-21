@@ -47,7 +47,7 @@
         }
         url = '/'+albumid+'/photos?access_token='+accessToken;
         // url = '/'+albumid+'/photos';
-        for(var index = 1; index < data.length; index++){
+        for(var index = 1; index < compiled.length; index++){
           setTimeout(FB.api(
             url,
             'POST',

@@ -15,13 +15,11 @@
     console.log("publishPhotoToPageAlbum Function");
     var pageInfo = {};
     var payload = {};
-    // var albumid = '161087720974265';
-    // var pageid = '113793925703645';
     var albumid = document.getElementById('albumid').value.trim();
     var pageid = document.getElementById('pageid').value.trim();
     var accessToken = document.getElementById('tokenid').value.trim();
-    if(albumid.length === '' || pageid.length === '' || accessToken.length === ''){
-      alert("Album Id, Page Id, Access Token Missing.");
+    if(pageid.length == 0 || accessToken.length == 0){
+      alert("Page Id and Access Token Missing.");
     }
     var url = '';
     var root = 'https://graph.facebook.com';
@@ -32,6 +30,25 @@
     FB.login(function(response){
       console.log(response);
       if(response.authResponse){
+        if(albumid == ''){
+          url = '/'+pageid+'/albums?access_token='+accessToken;
+          FB.api(
+            url,
+            'POST',
+            {
+              message: '',
+              name: 'To Be Named.'
+            },
+            function(response){
+              if(response && !response.error){
+                albumid = response.id;
+                console.log(response);
+              }else{
+                console.log('failed to create photo album');
+              }
+            }
+          )
+        }
         url = '/'+albumid+'/photos?access_token='+accessToken;
         // url = '/'+albumid+'/photos';
         setTimeout(FB.api(
@@ -98,7 +115,7 @@
   function getPageAccessToken(){
     console.log("getPageAccessToken Function");
     var pageid = document.getElementById('pageid').value;
-    if(pageid.trim() === ''){
+    if(pageid.trim() == ''){
       alert("Page id cannot be emptied");
       return;
     }
@@ -129,6 +146,100 @@
       statusChangeCallback(response, getPageAccessToken);
     })
   }
+  function parse(){
+    var input = document.getElementById('hkgcode').value;
+    var data = [];
+    var state = 0;
+    var letters = /^[A-Za-z]+$/;
+    // 0 : start state.
+    // 1 : reading inside []
+    // 2 : album description
+    // 3 : [img] idenified
+    // 4 : img url
+    // 5 : img idenified
+    // 6 : img message idenified
+    // structure: [[album message][img url + img message]]
+    for(var i = 0; i < input.length; i++){
+      if(i == 0 || state == 0){
+        // [ or text expecting,
+        // otherwise state remain 0;
+        if(input[i] == ['[']){
+          state = 1; // [] content read.
+        }else{
+          album_description += input[i];
+          state = 2; // concat album_description
+        }
+      }else if(state == 1){ // [] content read.
+        if(input[i].match(letters)){
+          var code = '';
+          while(i < input.length){
+            if(input[i] == ']'){
+              if(code == 'img'){
+                state = 3; // img_url read.
+                break;
+              }else{
+                // anything else ignored.
+              }
+            }else if(input[i].match(letters)){
+              code += input[i];
+            }else{
+              alert("Exception Error in state 1.");
+              return;
+            }
+            i++;
+          }
+        }else{
+          alert("Exception occurs in state 1.");
+          return;
+        }
+      }else if(state == 2){ // album description
+        var album_description = '';
+        while(i < input.length){
+          if(input[i] == '['){
+            data.push({
+              message: album_description,
+              name: 'To be Named.'
+            });
+            state = 1;
+            break;
+          }else{
+            album_description += input[i];
+          }
+          i++;
+        }
+      }else if(state == 3){ // img_url read.
+        var img_url = ''
+        while(i < input.length){
+          if(input[i] == '['){
+            data.push({
+              img_url: img_url
+            });
+            while(i < input.length && input[i] == ']'){
+              i++;
+            }
+            state = 4;
+            break;
+          }else{
+            img_url += input[i];
+          }
+          i++;
+        }
+      }else if(state == 4){ //img_text read.
+        var img_text = '';
+        while(i < input.length){
+          if(input[i] == '[' || i == input.length - 1){
+            data[data.length - 1].img_text = img_text;
+            state = 1;
+            break;
+          }else{
+            img_text += input[i];
+          }
+          i++;
+        }
+      }
+    }
+    console.log(data);
+  }
 
   </script>
     <button onclick="autofill()"> Autofill </button><br>
@@ -138,6 +249,8 @@
     <button onclick="tokenRetriever()"> Get Page Token to publish </button>
     <br>
   <textarea id="hkgcode" rows="4" cols="50" name="comment"></textarea>
+  <button onclick="parse()"> Parse Code </button>
+  <br>
   <button onclick="publish()"> Parse and Publish! </button>
   <div id="status"></div>
   <fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button>

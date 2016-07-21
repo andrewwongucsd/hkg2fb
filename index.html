@@ -175,7 +175,6 @@
           var code = '';
           while(i < input.length){
             console.log(i+" - "+input[i]+" - "+typeof(input[i]));
-
             if(input[i] == ']'){
               if(code == 'img'){
                 state = 3; // img_url read.
@@ -266,6 +265,7 @@
               break;
             }
             data[data.length - 1].img_text += input[i];
+            i++;
           }
       }else{
           alert("exception.");

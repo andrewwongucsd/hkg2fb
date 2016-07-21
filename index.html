@@ -51,29 +51,23 @@
         if(yes_album_id){
           compiled[1].message = compiled[0].message + '\n'+compiled[1].message;
         }
-        for(var index = 1; index < compiled.length; index++){
-          setTimeout(function(){
-            console.log(url);
-            console.log(compiled[index]);
-            albumid = document.getElementById('albumid').value;
-            url = '/'+albumid+'/photos?access_token='+accessToken;
-            FB.api(
-            url,
-            'POST',
-            {
-              "url": compiled[index].url,
-              "no_story": compiled[index].no_story,
-              "message": compiled[index].message
-            },
-            function(response){
-              console.log(response);
-              if(response && !response.error){
-                document.getElementById('status').innerHTML = 'successful ';
-              }else{
-                document.getElementById('status').innerHTML = 'failed';
+        setTimeout(function(){
+          for(var index = 1; index < compiled.length; index++){
+              albumid = document.getElementById('albumid').value;
+              url = '/'+albumid+'/photos?access_token='+accessToken;
+              console.log(url);
+              console.log(compiled[index]);
+              FB.api(url,'POST',compiled[index],
+              function(response){
+                console.log(response);
+                if(response && !response.error){
+                  document.getElementById('status').innerHTML = 'successful ';
+                }else{
+                  document.getElementById('status').innerHTML = 'failed';
+                }
               }
-            }
-          ); }, 10000);
+            );
+          },10000);
         }
       }else{
         console.log('User cancelled Login or did not fully authorize.');

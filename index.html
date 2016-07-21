@@ -183,7 +183,17 @@
             filter["369"] = {title: "369", next_state: 5, append: true};
             filter.banghead = {title: "banghead", next_state: 5, append: true};
             filter.bouncer = {title: "bouncer", next_state: 5, append: true};
+            filter.shocking = {title: "shocking", next_state: 5, append: true};
+            filter.red = {title: "red", next_state: 5, append: false};
+            filter.b = {title: "b", next_state: 5, append: false};
+            filter.blue = {title: "blue", next_state: 5, append: false};
+            filter.red = {title: "red", next_state: 5, append: false};
+            filter.size = {title: "size", next_state: 5, append: false};
+
             if(input[i] == ']'){
+              if(parseInt(code.slice(-1), 10) >= 0){
+                code = code.substring(0, code.length - 1);
+              }
               if(code in filter){
                 console.log(filter[code]);
                 state = filter[code].next_state;
@@ -198,12 +208,10 @@
                 state = 1;
                 break;
               }
-
             }else if(input[i].match(letters) || parseInt(input[i], 10) >=0 ){
               code += input[i];
             }else{
               alert("Exception Error in state 1A. "+i+" - "+input[i]+" - typeof "+typeof(input[i]));
-              return;
             }
             i++;
           }

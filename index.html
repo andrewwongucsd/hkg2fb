@@ -196,7 +196,9 @@
           }
         }else if(input[i] == ' ' || input[i] == '\n'){
 
-        }else if(input[i] == '/' || input[i] == '['){
+        }else if(input[i] == '['){
+          data[data.length - 1].message += input[i];
+        }else if(input[i] == '/'){
           while(i < input.length){
             console.log("inside / "+input[i]+" - "+i);
             var code = '';

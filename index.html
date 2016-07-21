@@ -178,6 +178,8 @@
                 state = 5; // exception handling.
                 data[data.length - 1].img_text += '[sosad]';
                 break;
+              }else if(code == 'url'){
+                state = 5;
               }else{
                 state = 1;
                 break;

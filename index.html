@@ -29,10 +29,10 @@
     FB.login(function(response){
       console.log(response);
       if(response.authResponse){
-        var no_album_id = false;
+        var yes_album_id = true;
         if(albumid == ''){
-          no_album_id = true;
-          url = root+'/'+pageid+'/albums?access_token='+accessToken;
+          yes_album_id = false;
+          url = '/'+pageid+'/albums?access_token='+accessToken;
           FB.api(
             url,
             'POST',
@@ -48,7 +48,7 @@
             }
           )
         }
-        if(no_album_id){
+        if(yes_album_id){
           compiled[1].message = compiled[0].message + '\n'+compiled[1].message;
         }
         for(var index = 1; index < compiled.length; index++){
@@ -56,7 +56,7 @@
             console.log(url);
             console.log(compiled[index]);
             albumid = document.getElementById('albumid').value;
-            url = root+'/'+albumid+'/photos?access_token='+accessToken;
+            url = '/'+albumid+'/photos?access_token='+accessToken;
             FB.api(
             url,
             'POST',

@@ -300,6 +300,7 @@
           i = i+('album_id='.length);
           while(i < url.length){
             console.log(i+" - "+url[i]);
+            console.log(parseInt(url[i],10));
             if(parseInt(url[i],10)){
               albumid += url[i];
             }else{

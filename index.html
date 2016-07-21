@@ -187,9 +187,9 @@
             filter.bouncer = {title: "bouncer", next_state: 5, append: true};
             filter.shocking = {title: "shocking", next_state: 5, append: true};
             filter.red = {title: "red", next_state: 5, append: false};
+            filter.green = {title: "green", next_state: 5, append: false};
             filter.b = {title: "b", next_state: 5, append: false};
             filter.blue = {title: "blue", next_state: 5, append: false};
-            filter.red = {title: "red", next_state: 5, append: false};
             filter.size = {title: "size", next_state: 5, append: false};
 
             if(input[i] == ']'){
@@ -240,6 +240,7 @@
               filter.blue = {next_state: 5};
               filter.b = {next_state: 5};
               filter.red = {next_state: 5};
+              filter.green = {next_state: 5};
               if(code in filter){
                 state = filter[code].next_state;
               }

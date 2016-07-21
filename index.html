@@ -175,28 +175,25 @@
           while(i < input.length){
             console.log(i+" - "+input[i]+" - "+typeof(input[i]));
             console.log(code);
+            var filter = {};
+            filter.img = {title: "img", next_state: 3, append: false};
+            filter.sosad = {title: "sosad", next_state: 5, append: true};
+            filter.photo = {title: "photo", next_state: 5, append: true};
+            filter.url = {title: "url", next_state: 5, append: false};
             if(input[i] == ']'){
-              if(code == 'img'){
-                state = 3; // img_url read.
-                break;
-              }else if(code == 'sosad'){
-                state = 5; // exception handling.
-                data[data.length - 1].message += '[sosad]';
-                break;
-              }else if(code == 'photo'){
-                state = 5;
-                data[data.length - 1].message += '[photo]';
-                break;
-              }else if(code == 'url'){
-                state = 5;
-                break;
-              }else if(data.length == 0){
+              if(data.length == 0){
                 state = 0;
                 break;
+              }else if(code in filter){
+                state = filter[code].next_state;
+                if(append){
+                  data[data.length - 1].message += "["+code+"]";
+                }
               }else{
                 state = 1;
                 break;
               }
+
             }else if(input[i].match(letters)){
               code += input[i];
             }else{

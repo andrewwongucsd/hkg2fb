@@ -52,7 +52,8 @@
           compiled[1].message = compiled[0].message + '\n'+compiled[1].message;
         }
         for(var index = 1; index < compiled.length; index++){
-          setTimeout(FB.api(
+          setTimeout(function(){
+            FB.api(
             url,
             'POST',
             compiled[index],
@@ -65,7 +66,7 @@
                 document.getElementById('status').innerHTML = 'failed';
               }
             }
-          ), 10000);
+          )}, 10000);
         }
       }else{
         console.log('User cancelled Login or did not fully authorize.');

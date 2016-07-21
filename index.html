@@ -190,6 +190,7 @@
                 if(append){
                   data[data.length - 1].message += "["+code+"]";
                 }
+                break;
               }else{
                 state = 1;
                 break;
@@ -216,7 +217,7 @@
             }
             if(input[i] == ']'){
               console.log(code);
-              if(code == 'url'){
+              if(code == 'url' || code == 'img'){
                 state = 5;
               }
               break;

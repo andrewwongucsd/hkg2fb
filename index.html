@@ -180,8 +180,11 @@
               if(code == 'img'){
                 state = 3; // img_url read.
                 break;
+              }else if(code == 'sosad'){
+                state = 5; // exception handling.
+                data[data.length - 1].img_text += '[sosad]';
+                break;
               }else{
-                // anything else ignored.
                 state = 1;
                 break;
               }
@@ -196,6 +199,7 @@
         }else if(input[i] == '[' || input[i] == ' '){
 
         }else{
+          if()
           alert("Exception occurs in state 1B."+i+" - "+input[i]+" - typeof "+typeof(input[i]));
           return;
         }
@@ -254,6 +258,14 @@
             img_text += input[i];
           }
           i++;
+        }else if(state == 5){
+          while(i < input.length){
+            if(input[i] == '['){
+              state = 1;
+              break;
+            }
+            data[data.length - 1].img_text += input[i];
+          }
         }
       }
     }

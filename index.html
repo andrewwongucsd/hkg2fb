@@ -147,7 +147,7 @@
     })
   }
   function parse(){
-    var input = document.getElementById('hkgcode').value;
+    var input = document.getElementById('hkgcode').value.trim();
     var data = [];
     var state = 0;
     var letters = /^[A-Za-z]+$/;

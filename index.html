@@ -178,20 +178,21 @@
             console.log(i+" - "+input[i]+" - "+typeof(input[i]));
             console.log(code);
             var filter = {};
-            filter.img = {title: "img", next_state: 3, append: false};
-            filter.sosad = {title: "sosad", next_state: 5, append: true};
-            filter.photo = {title: "photo", next_state: 5, append: true};
-            filter.url = {title: "url", next_state: 5, append: false};
-            filter["369"] = {title: "369", next_state: 5, append: true};
-            filter.banghead = {title: "banghead", next_state: 5, append: true};
-            filter.bouncer = {title: "bouncer", next_state: 5, append: true};
-            filter.shocking = {title: "shocking", next_state: 5, append: true};
-            filter.red = {title: "red", next_state: 5, append: false};
-            filter.green = {title: "green", next_state: 5, append: false};
-            filter.b = {title: "b", next_state: 5, append: false};
-            filter.blue = {title: "blue", next_state: 5, append: false};
-            filter.size = {title: "size", next_state: 5, append: false};
-            filter.flowerface = {title: "flowerface", next_state: 5, append: true};
+            filter.img = {next_state: 3, append: false};
+            filter.sosad = {next_state: 5, append: true};
+            filter.photo = {next_state: 5, append: true};
+            filter.url = {next_state: 5, append: false};
+            filter["369"] = {next_state: 5, append: true};
+            filter.banghead = {next_state: 5, append: true};
+            filter.bouncer = {next_state: 5, append: true};
+            filter.shocking = {next_state: 5, append: true};
+            filter.red = {next_state: 5, append: false};
+            filter.green = {next_state: 5, append: false};
+            filter.b = {next_state: 5, append: false};
+            filter.blue = {next_state: 5, append: false};
+            filter.size = {next_state: 5, append: false};
+            filter.flowerface = {next_state: 5, append: true};
+            filter.bomb = {next_state: 5, append: true};
 
             if(input[i] == ']'){
               if(parseInt(code.slice(-1), 10) >= 0){

@@ -344,33 +344,21 @@
   }
   function getAlbumAndPageId(){
     var url = document.getElementById('url').value;
-    for(var i = 0; i < url.length; i++){
-      console.log(i+" - "+url[i]);
-      if(url[i] == 'p'){
-        var pos = i;
-        console.log(url.slice(i,i+'photos'.length));
-        if(url.slice(i,i+'photos'.length) == 'photos'){
-          i = i - 2;
-          var pageid = '';
-          while(i > 0 && url[i] != '-'){
-            console.log(i+" - "+url[i]);
-            pageid = url[i] + pageid;
-            i--;
-          }
-          console.log('Page id - '+pageid);
-          document.getElementById('pageid').value = pageid;
-          i = pos;
-        }
-      }else if(url[i] == 'a'){
+    array = url.split("/");
+    pageid = array[3].split("-")[1];
+    document.getElementById('pageid').value = pageid;
+
+    for(var i = 0; i < array[5].length; i++){
+      if(array[5][i] == 'a'){
         var pos = i;
         var albumid = '';
-        console.log(url.slice(i, i+'album_id='.length));
-        if(url.slice(i,i+'album_id='.length) == 'album_id='){
+        console.log(array[5].slice(i, i+'album_id='.length));
+        if(array[5].slice(i,i+'album_id='.length) == 'album_id='){
           i = i+('album_id='.length);
-          while(i < url.length){
-            console.log(i+" - "+url[i]);
-            if(parseInt(url[i],10)>=0){
-              albumid += url[i];
+          while(i < array[5].length){
+            console.log(i+" - "+array[5][i]);
+            if(parseInt(array[5][i],10)>=0){
+              albumid += array[5][i];
             }else{
               break;
             }
@@ -378,7 +366,7 @@
           }
           console.log('album id: '+albumid);
           document.getElementById('albumid').value = albumid;
-          i = url.length;
+          i = array[5].length;
         }
       }
     }

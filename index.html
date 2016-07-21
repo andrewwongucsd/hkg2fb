@@ -279,6 +279,7 @@
       console.log(i+" - "+url[i]);
       if(url[i] == 'p'){
         var pos = i;
+        console.log(url.slice(i,'photos'.length));
         if(url.slice(i,'photos'.length) == 'photos'){
           i--;
           var pageid = '';
@@ -294,6 +295,7 @@
       }else if(url[i] == 'a'){
         var pos = i;
         var albumid = '';
+        console.log(url.slice(i, 'album_id='.length));
         if(url.slice(i,'album_id='.length) == 'album_id='){
           while(i < url.length){
             console.log(i+" - "+url[i]);

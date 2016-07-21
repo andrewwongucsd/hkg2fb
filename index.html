@@ -186,7 +186,7 @@
               if(data.length == 0){
                 state = 0;
                 break;
-              }else if(code in filter){
+              }else if(filter.hasOwnProperty(code)){
                 console.log(filter[code]);
                 state = filter[code].next_state;
                 if(filter[code].append){

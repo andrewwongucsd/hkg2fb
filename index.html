@@ -24,9 +24,7 @@
     }
     var url = '';
     var root = 'https://graph.facebook.com';
-    payload.url = 'https://i1.i-mg.co/ilGJ3.png';
-    payload.message = '有時會見到佢地,得閒可捉番隻番屋企';
-    payload.no_story = true;
+
 
     FB.login(function(response){
       console.log(response);
@@ -36,7 +34,7 @@
           FB.api(
             url,
             'POST',
-            data[0],
+            compiled[0],
             function(response){
               if(response && !response.error){
                 albumid = response.id;
@@ -53,7 +51,7 @@
           setTimeout(FB.api(
             url,
             'POST',
-            data[index],
+            compiled[index],
             function(response){
               console.log(response);
               console.log(payload)

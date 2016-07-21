@@ -267,14 +267,16 @@
             if(img_text.slice(img_text.length-2, img_text.length) == ':-'){
               img_text += input[i];
               continue;
-            }
-            if(img_text.length == 0){
+            }else if(img_text.length == 0){
               // doing nothing.
+              state = 1;
+              break;
             }else{
               data[data.length - 1].message = img_text;
+              state = 1;
+              break;
             }
-            state = 1;
-            break;
+
           }else{
             img_text += input[i];
           }

@@ -47,10 +47,12 @@
             }
           )
         }
-        url = '/'+albumid+'/photos?access_token='+accessToken;
+        getPageAccessToken();
+
         if(no_album_id){
           compiled[1].message = compiled[0].message + '\n'+compiled[1].message;
         }
+        url = '/'+albumid+'/photos?access_token='+accessToken;
         for(var index = 1; index < compiled.length; index++){
           setTimeout(function(){
             FB.api(
@@ -82,7 +84,7 @@
     FB.init({
       appId: '1827005040861675',cookie: true, xfbml: true,version: 'v2.7'
     });
-    autofill();
+    // autofill();
     // FB.getLoginStatus(function(response){
     //   statusChangeCallback(response, publishPhotoToPageAlbum);
     // })
@@ -145,7 +147,7 @@
     },{
       scope: 'email, manage_pages, publish_pages, publish_actions, public_profile',
       return_scopes: true
-    })
+    });
   }
   function tokenRetriever(){
     FB.getLoginStatus(function(response){

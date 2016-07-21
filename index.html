@@ -169,6 +169,7 @@
           var code = '';
           while(i < input.length){
             console.log(i+" - "+input[i]+" - "+typeof(input[i]));
+            console.log(code);
             if(input[i] == ']'){
               if(code == 'img'){
                 state = 3; // img_url read.

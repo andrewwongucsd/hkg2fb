@@ -276,15 +276,18 @@
     //https://www.facebook.com/%E7%AA%AE%E9%81%8A%E9%81%8A%E8%A8%98-113793925703645/photos/?tab=album&album_id=161087720974265
     var url = document.getElementById('url').value;
     for(var i = 0; i < url.length; i++){
+      console.log(i+" - "+url[i]);
       if(url[i] == 'p'){
         var pos = i;
         if(url.slice(i,'photos'.length) == 'photos'){
           i--;
           var pageid = '';
           while(i > 0 && url[i] != '-'){
+            console.log(i+" - "+url[i]);
             pageid = url[i] + pageid;
             i--;
           }
+          console.log('Page id - '+pageid);
           document.getElementById('pageid').value = pageid;
           i = pos;
         }
@@ -293,6 +296,7 @@
         var albumid = '';
         if(url.slice(i,'album_id='.length) == 'album_id='){
           while(i < url.length){
+            console.log(i+" - "+url[i]);
             if(url[i]>= '0' && url[i]<= '9'){
               albumid += url[i];
             }else{

@@ -325,7 +325,7 @@
         console.log("State 5: Exception Handling.");
           while(i < input.length){
             console.log(i+" - "+input[i]+" - "+typeof(input[i]));
-            if(!("message" in data[data.length - 1])){
+            if(data[data.length - 1].message === undefined){
               data[data.length - 1].message = "";
             }
             var message = data[data.length - 1].message;

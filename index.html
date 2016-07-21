@@ -180,6 +180,8 @@
                 break;
               }else{
                 // anything else ignored.
+                state = 1;
+                break;
               }
             }else if(input[i].match(letters)){
               code += input[i];

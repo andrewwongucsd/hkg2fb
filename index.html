@@ -335,8 +335,9 @@
                 break;
               }
             }
+            //myObj.hasOwnProperty('myKey') - boolean
             if(data.length == 0){
-              data[0].message = '';
+              data.push({message: '', no_story: false});
             }
             data[data.length - 1].message += input[i];
             i++;

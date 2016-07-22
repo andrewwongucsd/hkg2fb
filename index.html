@@ -270,7 +270,6 @@
       }else if(state == 2){ // album description
         console.log("State 2: Album Description.");
         var album_description = '';
-        var isUnicode = false;
         while(i < input.length){
           console.log(i+" - "+input[i]+" - "+typeof(input[i]));
 
@@ -287,11 +286,8 @@
             break;
           }else{
             if(input[i] == '&' && i < input.length && input[i+1] == '#'){
-              album_description += "\u";
-              i++;
-              isUnicode = true;
-            }else if(isUnicode && input[i] == ';'){
-              isUnicode = false;
+              album_description += "\u"+input.slice(i+2, i+7);
+              i = i + '&#21655;'.length - 1;
             }else{
               album_description += input[i];
             }

@@ -274,14 +274,23 @@
           console.log(i+" - "+input[i]+" - "+typeof(input[i]));
 
           if(input[i] == '['){
+            var album_title = document.getElementById('albumTitle').value;
+            if(album_title.length == 0){
+              album_title = 'To be Named.';
+            }
             data.push({
               message: album_description,
-              name: 'To be Named.'
+              name: album_title
             });
             state = 1;
             break;
           }else{
-            album_description += input[i];
+            if(input[i] == '&' && i < input.length && input[i+1] == '#'){
+              album_description += "\u";
+              i++;
+            }else{
+              album_description += input[i];
+            }
           }
           i++;
         }
@@ -394,7 +403,8 @@
   </script>
     URL: <input id="url" type="text" name="url">
     <button onclick="getAlbumAndPageId()">Get Album ID and Page Id</button><br>
-    album id: <input id="albumid" type="text" name="albumid"><br>
+    album id: <input id="albumid" type="text" name="albumid">
+    OR album id: <input id="albumTitle" type="text" name="albumTitle"><br>
     page id: <input id="pageid" type="text" name="pageid"><br>
     access token: <input id="tokenid" type="text" name="tokenid">
     <button onclick="tokenRetriever()"> Get Page Token to publish </button>

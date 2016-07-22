@@ -284,7 +284,6 @@
             }
             data.push({
               url: img_url,
-              no_story: false
             });
             while(i < input.length && input[i] != ']'){
               console.log(i+" - "+input[i]+" - "+typeof(input[i]));
@@ -337,7 +336,7 @@
             }
             //myObj.hasOwnProperty('myKey') - boolean
             if(data.length == 0){
-              data.push({message: '', no_story: false});
+              data.push({message: ''});
             }
             data[data.length - 1].message += input[i];
             i++;

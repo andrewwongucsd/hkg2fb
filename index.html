@@ -29,9 +29,9 @@
 
     FB.login(function(response){
       console.log(response);
-      console.log(pageid);
       if(response.authResponse){
         var yes_album_id = true;
+        console.log(albumid);
         if(albumid == ''){
           yes_album_id = false;
           url = '/'+pageid+'/albums?access_token='+accessToken;

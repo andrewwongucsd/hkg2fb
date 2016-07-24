@@ -71,15 +71,13 @@
                 }
               }
             );
-            function functionName(locker) {
-              setTimeout(function(locker){
-                while(locker > 0){
-                  // do nothing but spinning
+            setTimeout(function(locker){
+              while(locker > 0){
+                // do nothing but spinning
                   console.log("Number of Transmission. "+locker);
-                }
-                console.log("Number of Transmission. "+locker);
-              },1000);
-            }(oneByOneTransmission);
+              }
+              console.log("Number of Transmission. "+locker);
+            },1000);
           }
         },1000);
       }else{

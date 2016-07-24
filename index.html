@@ -151,7 +151,7 @@
             }else{
             }
           }
-        })
+        });
       }else{
         console.log('User cancelled Login or did not fully authorize.');
       }
@@ -373,31 +373,45 @@
   function getAlbumAndPageId(){
     var url = document.getElementById('url').value;
     array = url.split("/");
-    pageid = array[3].split("-")[1];
-    document.getElementById('pageid').value = pageid;
+    isPageSplit = array[3].split("-");
+    if(isPageSplit.length == 1){
+      FB.api("/"+isPageSplit[0],function(response){
+        if(response && !response.error){
+          pageid = response.id;
+          document.getElementById('pageid').value = pageid;
+          console.log(response);
+        }else{
+          console.log('failed to look up pageid');
+        }
+      });
+    }else{
+      pageid = isPageSplit[1];
+      document.getElementById('pageid').value = pageid;
 
-    for(var i = 0; i < array[5].length; i++){
-      if(array[5][i] == 'a'){
-        var pos = i;
-        var albumid = '';
-        console.log(array[5].slice(i, i+'album_id='.length));
-        if(array[5].slice(i,i+'album_id='.length) == 'album_id='){
-          i = i+('album_id='.length);
-          while(i < array[5].length){
-            console.log(i+" - "+array[5][i]);
-            if(parseInt(array[5][i],10)>=0){
-              albumid += array[5][i];
-            }else{
-              break;
+      for(var i = 0; i < array[5].length; i++){
+        if(array[5][i] == 'a'){
+          var pos = i;
+          var albumid = '';
+          console.log(array[5].slice(i, i+'album_id='.length));
+          if(array[5].slice(i,i+'album_id='.length) == 'album_id='){
+            i = i+('album_id='.length);
+            while(i < array[5].length){
+              console.log(i+" - "+array[5][i]);
+              if(parseInt(array[5][i],10)>=0){
+                albumid += array[5][i];
+              }else{
+                break;
+              }
+              i++;
             }
-            i++;
+            console.log('album id: '+albumid);
+            document.getElementById('albumid').value = albumid;
+            i = array[5].length;
           }
-          console.log('album id: '+albumid);
-          document.getElementById('albumid').value = albumid;
-          i = array[5].length;
         }
       }
     }
+
   }
 
   </script>

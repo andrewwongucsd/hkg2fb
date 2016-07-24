@@ -29,6 +29,7 @@
 
     FB.login(function(response){
       console.log(response);
+      console.log(pageid);
       if(response.authResponse){
         var yes_album_id = true;
         if(albumid == ''){
@@ -403,7 +404,7 @@
     URL: <input id="url" type="text" name="url">
     <button onclick="getAlbumAndPageId()">Get Album ID and Page Id</button><br>
     album id: <input id="albumid" type="text" name="albumid">
-    OR album id: <input id="albumTitle" type="text" name="albumTitle"><br>
+    OR album title: <input id="albumTitle" type="text" name="albumTitle"><br>
     page id: <input id="pageid" type="text" name="pageid"><br>
     access token: <input id="tokenid" type="text" name="tokenid">
     <button onclick="tokenRetriever()"> Get Page Token to publish </button>

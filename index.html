@@ -32,7 +32,7 @@
       if(response.authResponse){
         var yes_album_id = true;
         console.log(albumid);
-        if(albumid == ''){
+        if(albumid.trim().length == 0){
           yes_album_id = false;
           url = '/'+pageid+'/albums?access_token='+accessToken;
 
